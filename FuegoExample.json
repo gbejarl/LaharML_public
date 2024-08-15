@@ -1,0 +1,24 @@
+{
+    "client": "IRIS",
+    "network": "6Q",
+    "station": "FEC1",
+    "location": "",
+    "channel": "HHZ",
+    "features": [
+        4,
+        6,
+        34,
+        39,
+        44
+    ],
+    "window_length": 10,
+    "window_overlap": 0.75,
+    "remove_response": true,
+    "decimation_factor": 4,
+    "minimum_frequency": null,
+    "maximum_frequency": null,
+    "minimum_lahar_duration": 30,
+    "model_name": "FuegoExample",
+    "model_filename": "FuegoExample_model.joblib",
+    "scaler_filename": "FuegoExample_scaler.joblib"
+}
