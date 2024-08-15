@@ -31,12 +31,16 @@ def plot_sampled(dataframe,
                  hue):
 
     dataframe_copy = dataframe.copy()
-    dataframe_copy['Times'] = pd.to_datetime(dataframe_copy['Times'])
+    dataframe_copy['Times'] = pd.to_datetime(dataframe_copy['Times'], unit='s')
 
-    fig, ax = plt.subplots(1, 1, figsize=(7, 5), dpi=200)
-    sns.scatterplot(data=dataframe,
+    fig, ax = plt.subplots(1, 1, figsize=(7, 3), dpi=200)
+    sns.scatterplot(data=dataframe_copy,
                     x='Times',
                     y=variable,
                     hue=hue,
-                    ax=ax)
+                    ax=ax,
+                    edgecolor='none')
+    ax.xaxis.set_major_formatter(mdates.DateFormatter('%H:%M'))
     plt.show()
+
+#

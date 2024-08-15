@@ -248,4 +248,17 @@ def getrecord_iris(model_name,
         np.savetxt(f'{model_name}_events.csv', xts, delimiter=",", fmt='%s')
         print(f'Detections saved.', flush=True)
 
+    for i in range(len(x1)):
+        x1[i] = UTCDateTime(x1[i])
+        x2[i] = UTCDateTime(x2[i])
+
+        event = client.get_waveforms(network,
+                                     station,
+                                     location,
+                                     channel,
+                                     x1[i],
+                                     x2[i])
+        event.plot()
+
+
 # %%
