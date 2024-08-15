@@ -139,8 +139,6 @@ def getrecord_iris(model_name,
             print(f'Predictions generated.', flush=True)
             cleaned_data_frame = clean_detections(classified_data_frame)
             print(f'Results cleaned.', flush=True)
-            plot_sampled(cleaned_data_frame,
-                         cleaned_data_frame.columns[0], 'Prediction')
             lah_0, lah_1, lah_0l, lah_1l = retrieve_dates(cleaned_data_frame)
             print(f'Dates retrieved.', flush=True)
             lah_count = len(lah_0)
@@ -153,6 +151,9 @@ def getrecord_iris(model_name,
             print('No detections found for this time period.')
             print('---', flush=True)
             continue
+
+        plot_sampled(cleaned_data_frame,
+                     cleaned_data_frame.columns[0], 'Prediction')
 
         # Count number of detections in iteration
         if np.any(x1):
