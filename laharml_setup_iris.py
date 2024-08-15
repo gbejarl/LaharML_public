@@ -5,13 +5,9 @@
 
 import json
 import joblib
-import numpy as np
 import pandas as pd
-import seaborn as sns
-import matplotlib.pyplot as plt
 from obspy.clients.fdsn import Client
 from obspy import UTCDateTime
-from scipy import signal
 
 from laharml_modules import (preprocess_stream,
                              extract_samples,

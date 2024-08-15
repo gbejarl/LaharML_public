@@ -7,8 +7,6 @@ import json
 import joblib
 import numpy as np
 import pandas as pd
-import seaborn as sns
-import matplotlib.pyplot as plt
 from obspy.clients.fdsn import Client
 from obspy import UTCDateTime
 from scipy import signal
@@ -18,6 +16,8 @@ from laharml_modules import (preprocess_stream,
                              predict_knn,
                              clean_detections,
                              retrieve_dates)
+
+from laharml_plots import (plot_sampled)
 
 ##############################
 # %% 2 Initial parameters
@@ -139,6 +139,8 @@ def getrecord_iris(model_name,
             print(f'Predictions generated.', flush=True)
             cleaned_data_frame = clean_detections(classified_data_frame)
             print(f'Results cleaned.', flush=True)
+            plot_sampled(cleaned_data_frame,
+                         cleaned_data_frame.columns[0], 'Prediction')
             lah_0, lah_1, lah_0l, lah_1l = retrieve_dates(cleaned_data_frame)
             print(f'Dates retrieved.', flush=True)
             lah_count = len(lah_0)
@@ -181,7 +183,7 @@ def getrecord_iris(model_name,
         print(f'Total detections found = {tot_count}', flush=True)
         print('---', flush=True)
 
-    # Automated post processing
+        # Automated post processing
     r1a = []  # Start time, step 1
     r1b = []  # End time, step 1
     r2a = []  # Start time, step 2
