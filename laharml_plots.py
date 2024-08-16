@@ -54,7 +54,7 @@ def plot_interval(trace,
                  y=trace.data,
                  ax=ax,
                  color='black')
-    if starttime or endtime:
+    if starttime and endtime:
         ax.axvspan(starttime, endtime, color='red', alpha=0.15)
     else:
         starttime = pd.to_datetime(trace.times('timestamp')[0], unit='s')
