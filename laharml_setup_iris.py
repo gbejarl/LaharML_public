@@ -12,6 +12,7 @@ from obspy import UTCDateTime
 from laharml_modules import (preprocess_stream,
                              extract_samples,
                              train_test_knn)
+from laharml_plots import plot_interval
 
 ##############################
 # %% 2 Script
@@ -75,6 +76,7 @@ def setup_iris(client_id,
         total_lahar_time += stream[-1].stats.endtime - \
             stream[0].stats.starttime
         training_lahar.append(stream)
+
         print(
             f'Training lahar event {i+1} of {len(list_lahar)} requested.', flush=True)
     print(f'---', flush=True)
@@ -108,6 +110,7 @@ def setup_iris(client_id,
                                               freqmin=minimum_frequency,
                                               freqmax=maximum_frequency,
                                               sensitivity=sensitivity)
+        plot_interval(training_lahar[i][0])
     print(f'Preprocessed routine in lahar training data done.', flush=True)
     print(f'---', flush=True)
 
@@ -121,6 +124,7 @@ def setup_iris(client_id,
                                               freqmin=minimum_frequency,
                                               freqmax=maximum_frequency,
                                               sensitivity=sensitivity)
+        plot_interval(training_noise[i][0])
     print(f'Preprocessed routine in noise training data done.', flush=True)
     print(f'---', flush=True)
 
