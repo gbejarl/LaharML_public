@@ -33,7 +33,7 @@ def plot_sampled(dataframe,
     dataframe_copy = dataframe.copy()
     dataframe_copy['Times'] = pd.to_datetime(dataframe_copy['Times'], unit='s')
 
-    fig, ax = plt.subplots(1, 1, figsize=(7, 3), dpi=200)
+    fig, ax = plt.subplots(1, 1, figsize=(8, 3), dpi=200)
     sns.scatterplot(data=dataframe_copy,
                     x='Times',
                     y=variable,
@@ -49,7 +49,7 @@ def plot_sampled(dataframe,
 def plot_interval(trace,
                   starttime=None,
                   endtime=None):
-    fig, ax = plt.subplots(1, 1, figsize=(7, 3), dpi=200)
+    fig, ax = plt.subplots(1, 1, figsize=(8, 3), dpi=200)
     sns.lineplot(x=pd.to_datetime(trace.times('timestamp'), unit='s'),
                  y=trace.data,
                  ax=ax,
@@ -62,7 +62,7 @@ def plot_interval(trace,
         # Get the x-axis tick labels
         labels = [item.get_text() for item in ax.get_xticklabels()]
         # Modify the first label
-        labels[0] = pd.to_datetime(labels[0]).strftime('%H:%M\n%d-%b-%y')
+        labels[0] = starttime.strftime('%H:%M\n%d-%b-%y')
         # Set the modified labels back to the x-axis
         ax.set_xticklabels(labels)
     ax.set_xlim(pd.to_datetime(trace.times('timestamp')[0], unit='s'),
